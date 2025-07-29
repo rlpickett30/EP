@@ -1,0 +1,11 @@
+{
+  "start_project": 0,
+  "avis_event": 1,
+  "telemetry_event": 2,
+  "weather_event": 3,
+  "startup_ack": 4,
+  "init": 5,
+  "change_mode": 6,
+  "ack_retry_event": 7,
+  "recalibrate": 8
+}
