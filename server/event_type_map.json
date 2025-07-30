@@ -1,0 +1,6 @@
+{
+  "Unknown": 0,
+  "avis_event": 1,
+  "telemetry_event": 2,
+  "weather_event": 3
+}

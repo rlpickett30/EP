@@ -1,97 +1,100 @@
 """
 protocol.py
-------------
+-----------
 
-This module defines the Protocol class used to encode and decode compact Avis detection
-events as 8-byte binary payloads for LoRa transmission.
+Handles binary encoding and decoding of EnviroPulse events using
+structure_protocol.json, event_type_map.json, and taxonomy_map.json.
 
-Each Avis event includes:
-  - event_type   (uint8): fixed value of 1 for bird detections
-  - timestamp    (uint32): seconds since epoch (UTC)
-  - taxonomy     (uint16): mapped BirdNET common name as integer code
-  - confidence   (uint8): binned confidence value (0–7)
-
-Core Features:
-- Loads encoding structure from structure_protocol.json
-- Dynamically loads any attached mapping files (e.g., taxonomy, confidence scale)
-- Provides encode/decode methods for both taxonomy and event payloads
-- Supports both forward and reverse lookup of taxonomy codes
-
-Intended Usage:
-- Construct compact binary packets to transmit over constrained networks (e.g., LoRa)
-- Decode incoming payloads to reconstruct original detection data
-
-Assumes:
-- JSON maps are stored in the same directory and optionally brace-less
-- structure_protocol.json defines the binary format and field mappings
-
-This protocol module is essential to the Avis system and serves as the schema layer
-between raw BirdNET detections and LoRa-compatible data packets.
+Guarantees crash-proof operation:
+- Invalid events will raise informative errors or return fallback
+- Unknown taxonomy or type values are replaced with "Unknown"/0
 """
 
-import json
 import struct
+import json
 from pathlib import Path
 
-# Base directory for all protocol JSON maps
-BASE_DIR = Path(__file__).resolve().parent
-
-def _load_json(filename: str) -> dict:
-    """
-    Load a (possibly brace-less) JSON map from BASE_DIR.
-    If the file content isn't wrapped in {} already, add them.
-    """
-    path = BASE_DIR / filename
-    raw = path.read_text().strip()
-    if not raw.startswith('{'):
-        raw = '{' + raw + '}'
-    return json.loads(raw)
-
 class Protocol:
-    """
-    Protocol for Avis 8-byte detection events:
-      - event_type (uint8)
-      - timestamp  (uint32)
-      - taxonomy   (uint16)
-      - confidence (uint8)
-    Maps for taxonomy and confidence are loaded automatically.
-    """
     def __init__(self):
-        # load the structure definition
-        struct_def = _load_json('structure_protocol.json')['avis_event']
-        self._format = struct_def['format']
-        self._fields = struct_def['fields']
+        base = Path(__file__).parent
+        self._structure = self._load_json(base / "structure_protocol.json")
+        self._event_map = self._load_json(base / "event_type_map.json")
+        self._taxonomy_map = self._load_json(base / "taxonomy_map.json")
+        self._reverse_event_map = {v: k for k, v in self._event_map.items()}
+        self._reverse_taxonomy_map = {v: k for k, v in self._taxonomy_map.items()}
 
-        # load any maps (e.g. taxonomy, confidence)
-        self._maps = {}
-        for field in self._fields:
-            if 'map' in field:
-                self._maps[field['name']] = _load_json(field['map'])
+    def _load_json(self, path: Path) -> dict:
+        try:
+            raw = path.read_text().strip()
+            return json.loads(raw if raw.startswith("{") else "{" + raw + "}")
+        except Exception as e:
+            print(f"[ERROR] Failed to load {path.name}: {e}")
+            return {}
 
-        # build reverse lookup for taxonomy
-        self._tax_map = self._maps.get('taxonomy', {})
-        self._rev_tax = {v: k for k, v in self._tax_map.items()}
+    def encode(self, event: dict) -> bytes:
+        try:
+            event_type_str = event.get("event_type", "Unknown")
+            struct_def = self._structure.get(event_type_str)
+            if not struct_def:
+                raise ValueError(f"Unknown or unsupported event_type: '{event_type_str}'")
 
-    def encode_taxonomy(self, common_name: str) -> int:
-        """
-        Encode a common name into its taxonomy code.
-        Returns 0 ('Unknown') if the name is not found.
-        """
-        return self._tax_map.get(common_name, 0)
+            fmt = struct_def["format"]
+            fields = struct_def["fields"]
 
-    def decode_taxonomy(self, code: int) -> str:
-        """
-        Decode a taxonomy code back to its common name.
-        Returns '<unknown {code}>' if the code is unrecognized.
-        """
-        return self._rev_tax.get(code, f'<unknown {code}>')
+            values = []
+            for field in fields:
+                name = field["name"]
+                if name == "event_type":
+                    values.append(self._event_map.get(event_type_str, 0))
+                elif "map" in field and name == "taxonomy":
+                    values.append(self._taxonomy_map.get(event.get("common_name", "Unknown"), 0))
+                else:
+                    if name not in event:
+                        raise KeyError(f"Missing field '{name}' in event")
+                    values.append(event[name])
 
-    def encode_avis_event(self, timestamp: int, tax_code: int, conf_bin: int) -> bytes:
-        # pack event_type=1, timestamp, taxonomy, confidence
-        return struct.pack(self._format, 1, timestamp, tax_code, conf_bin)
+            return struct.pack(fmt, *values)
 
-    def decode_avis_event(self, data: bytes):
-        # unpack according to the same format; ignore extra fields if any
-        unpacked = struct.unpack(self._format, data)
-        _, ts, tax, conf = unpacked[:4]
-        return ts, tax, conf
+        except Exception as e:
+            print(f"[ERROR] Failed to encode event: {e}")
+            return b''
+
+    def decode(self, data: bytes) -> dict:
+        if len(data) < 1:
+            print("[ERROR] Cannot decode empty payload.")
+            return {"event_type": "decode_error", "raw": data.hex()}
+
+        try:
+            event_type_id = data[0]
+            event_type_str = self._reverse_event_map.get(event_type_id, "Unknown")
+            struct_def = self._structure.get(event_type_str)
+            if not struct_def:
+                raise ValueError(f"Unknown event_type ID: {event_type_id}")
+
+            fmt = struct_def["format"]
+            expected_len = struct.calcsize(fmt)
+            if len(data) != expected_len:
+                raise ValueError(f"Incorrect payload length for {event_type_str}: expected {expected_len}, got {len(data)}")
+
+            fields = struct_def["fields"]
+            unpacked = struct.unpack(fmt, data)
+            event = {"event_type": event_type_str}
+
+            for i, field in enumerate(fields):
+                name = field["name"]
+                if name == "event_type":
+                    continue
+                elif "map" in field and name == "taxonomy":
+                    event["common_name"] = self._reverse_taxonomy_map.get(unpacked[i], "Unknown")
+                else:
+                    event[name] = unpacked[i]
+
+            return event
+
+        except Exception as e:
+            print(f"[ERROR] Failed to decode payload: {e}")
+            return {
+                "event_type": "decode_error",
+                "raw": data.hex(),
+                "error": str(e)
+            }
