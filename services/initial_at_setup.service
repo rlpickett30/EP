@@ -1,0 +1,11 @@
+[Unit]
+Description=Initial LoRa AT Command Setup
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/FLC/EP/scripts/node/initial_at_setup.py
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
