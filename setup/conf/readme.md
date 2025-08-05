@@ -4,7 +4,7 @@ EnviroPulse is an off-grid, modular environmental monitoring system designed for
 
 
 
-_____________Key Features_____________
+***Key Features***
 
 LoRa Node-to-Gateway Communication using RAK3272-SiP and RAK2287
 
@@ -22,75 +22,75 @@ Fully Offline Operation with local storage and messaging
 
 
 
-_____________Project Structure_____________
+***Project Structure***
 
 EP/
 ├── logs/                         # Daily JSON logs from the UDP listener
-│   └── 07_31_2025.json
+│   └── 07\_31\_2025.json
 │
 ├── scripts/
 │   ├── node/                     # LoRa node logic, drivers, and event samplers
-│   │   ├── birdnet_sampler.py
-│   │   ├── bmp390_driver.py
-│   │   ├── confidence_manager.py
-│   │   ├── db_watcher.py
-│   │   ├── detection_extractor.py
+│   │   ├── birdnet\_sampler.py
+│   │   ├── bmp390\_driver.py
+│   │   ├── confidence\_manager.py
+│   │   ├── db\_watcher.py
+│   │   ├── detection\_extractor.py
 │   │   ├── dispatcher.py
-│   │   ├── gps_calibrator.py
-│   │   ├── gps_driver.py
-│   │   ├── initial_at_setup.py
+│   │   ├── gps\_calibrator.py
+│   │   ├── gps\_driver.py
+│   │   ├── initial\_at\_setup.py
 │   │   ├── protocol.py
-│   │   ├── rui3_driver.py
-│   │   ├── send_over_lora.py
-│   │   ├── sht31_driver.py
-│   │   ├── telemetry_sampler.py
-│   │   ├── weather_sampler.py
-│   │   ├── confidence_scale_map.json
-│   │   ├── event_type_map.json
-│   │   ├── structure_protocol.json
-│   │   └── taxonomy_map.json
+│   │   ├── rui3\_driver.py
+│   │   ├── send\_over\_lora.py
+│   │   ├── sht31\_driver.py
+│   │   ├── telemetry\_sampler.py
+│   │   ├── weather\_sampler.py
+│   │   ├── confidence\_scale\_map.json
+│   │   ├── event\_type\_map.json
+│   │   ├── structure\_protocol.json
+│   │   └── taxonomy\_map.json
 │   │
 │   └── server/                   # UDP listener and data ingestion pipeline
 │       ├── dispatcher.py
-│       ├── lorawan_decryptor.py
+│       ├── lorawan\_decryptor.py
 │       ├── protocol.py
-│       ├── udp_decoder.py
-│       ├── udp_listener.py
-│       ├── udp_logger.py
-│       ├── web_ingestor.py
-│       ├── confidence_scale_map.json
-│       ├── event_type_map.json
-│       ├── node_registry.json
-│       ├── structure_protocol.json
-│       └── taxonomy_map.json
+│       ├── udp\_decoder.py
+│       ├── udp\_listener.py
+│       ├── udp\_logger.py
+│       ├── web\_ingestor.py
+│       ├── confidence\_scale\_map.json
+│       ├── event\_type\_map.json
+│       ├── node\_registry.json
+│       ├── structure\_protocol.json
+│       └── taxonomy\_map.json
 │
 ├── setup/
 │   ├── conf/                     # Gateway configuration files
-│   │   └── global_conf.json
+│   │   └── global\_conf.json
 │   │
 │   ├── guides/                   # Setup guides for each subsystem
-│   │   ├── gateway_setup_guide.py
-│   │   ├── node_setup_guide.py
-│   │   └── server_setup_guide.py
+│   │   ├── gateway\_setup\_guide.py
+│   │   ├── node\_setup\_guide.py
+│   │   └── server\_setup\_guide.py
 │   │
 │   └── layouts/                  # Visual diagrams and design drawings
-│       ├── gateway_script_diagram.drawio
-│       ├── node_wiring_diagram.drawio
-│       ├── node__script_diagram.drawio
+│       ├── gateway\_script\_diagram.drawio
+│       ├── node\_wiring\_diagram.drawio
+│       ├── node\_\_script\_diagram.drawio
 │       ├── presentation.drawio
-│       └── server_script_diagram.drawio
+│       └── server\_script\_diagram.drawio
 
 
 
-_____________Installation_____________
+***Installation***
 
 See full instructions in:
 
-setup/guides/node_setup_guide.py
+setup/guides/node\_setup\_guide.py
 
-setup/guides/gateway_setup_guide.py
+setup/guides/gateway\_setup\_guide.py
 
-setup/guides/server_setup_guide.py
+setup/guides/server\_setup\_guide.py
 
 Each component runs in a separate Python virtual environment.
 
@@ -104,17 +104,17 @@ pip install -r requirements.txt
 
 
 
-_____________Configuration Notes_____________
+***Configuration Notes***
 
-Be sure to update setup/conf/global_conf.json with your Gateway ID and server IP
+Be sure to update setup/conf/global\_conf.json with your Gateway ID and server IP
 
-Ensure that each node’s DevAddr in initial_at_setup.py matches the entry in node_registry.json
+Ensure that each node’s DevAddr in initial\_at\_setup.py matches the entry in node\_registry.json
 
 LoRa configuration is handled via AT commands (e.g. AT+MASK, AT+BAND)
 
 
 
-_____________Future Goals_____________
+***Future Goals***
 
 Add lightweight local GUI for live data display
 
@@ -124,16 +124,17 @@ Implement field-deployable enclosures with solar support
 
 
 
-_____________License_____________
+***License***
 
-This project is part of an undergraduate research initiative at Fort Lewis College and is released for educational use. No commercial license is implied.
+This project is part of an undergraduate research initiative at Fort Lewis College and is released for educational use only. No commercial license is implied.
 
 
 
-_____________Acknowledgments_____________
+***Acknowledgments***
 
 BirdNET-Pi: https://github.com/Nachtzuster/BirdNET-Pi
 
 RAKWireless: https://www.rakwireless.com/
 
 Adafruit CircuitPython Libraries: https://circuitpython.org/
+

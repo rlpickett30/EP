@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.6 Chrome/138.0.7204.100 Electron/37.2.3 Safari/537.36" version="28.0.6">
   <diagram name="Page-1" id="bEDtBJjbRW64ONqI4fNz">
-    <mxGraphModel dx="7440" dy="5315" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1808" dy="2023" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1730,11 +1730,11 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="LPKB3k54g_Fxfj-QyEzr-143" value="&lt;br&gt;&lt;div&gt;initial_at_setup.py&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
-          <mxGeometry x="6160" y="-120" width="120" height="120" as="geometry" />
+        <mxCell id="LPKB3k54g_Fxfj-QyEzr-143" value="&lt;div&gt;initial_at_setup.py&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="6520" y="520" width="120" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="LPKB3k54g_Fxfj-QyEzr-146" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.643;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="LPKB3k54g_Fxfj-QyEzr-143" target="LPKB3k54g_Fxfj-QyEzr-21" edge="1">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="07B5mJDu1v8yvoa3SqAz-1" value="&lt;div&gt;setup_services.py&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="6360" y="520" width="120" height="120" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
