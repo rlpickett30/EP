@@ -79,8 +79,7 @@ def sample_weather():
 
 def sample_telemetry():
     try:
-        TelemetryEvent.start_gps_session()
-        event = TelemetryEvent.from_calibrator().to_dict()
+        event = TelemetryEvent.from_gps().to_dict()
         dispatch_event(event)
     except Exception as e:
         print(f"[ERROR] Telemetry sample failed: {e}")

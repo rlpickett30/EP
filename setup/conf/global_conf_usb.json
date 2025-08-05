@@ -1,0 +1,123 @@
+{
+  "SX130x_conf": {
+    "com_type": "USB",
+    "com_path": "/dev/ttyACM0",
+    "lorawan_public": true,
+    "clksrc": 0,
+    "antenna_gain": 0,
+    "full_duplex": false,
+
+    "radio_0": {
+      "enable": true,
+      "type": "SX1250",
+      "freq": 903900000,
+      "rssi_offset": -215.4,
+      "rssi_tcomp": {
+        "coeff_a": 0,
+        "coeff_b": 0,
+        "coeff_c": 20.41,
+        "coeff_d": 2162.56,
+        "coeff_e": 0
+      },
+      "tx_enable": true,
+      "tx_freq_min": 902000000,
+      "tx_freq_max": 928000000,
+      "tx_gain_lut": [
+        { "rf_power": 10, "pa_gain": 0, "pwr_idx": 0 },
+        { "rf_power": 14, "pa_gain": 1, "pwr_idx": 1 },
+        { "rf_power": 17, "pa_gain": 1, "pwr_idx": 2 },
+        { "rf_power": 20, "pa_gain": 1, "pwr_idx": 3 },
+        { "rf_power": 23, "pa_gain": 1, "pwr_idx": 4 },
+        { "rf_power": 26, "pa_gain": 1, "pwr_idx": 5 },
+        { "rf_power": 27, "pa_gain": 1, "pwr_idx": 6 },
+        { "rf_power": 28, "pa_gain": 1, "pwr_idx": 7 },
+        { "rf_power": 29, "pa_gain": 1, "pwr_idx": 8 },
+        { "rf_power": 30, "pa_gain": 1, "pwr_idx": 9 },
+        { "rf_power": 31, "pa_gain": 1, "pwr_idx": 10 },
+        { "rf_power": 32, "pa_gain": 1, "pwr_idx": 11 },
+        { "rf_power": 33, "pa_gain": 1, "pwr_idx": 12 },
+        { "rf_power": 34, "pa_gain": 1, "pwr_idx": 13 },
+        { "rf_power": 35, "pa_gain": 1, "pwr_idx": 14 },
+        { "rf_power": 36, "pa_gain": 1, "pwr_idx": 15 }
+      ]
+    },
+
+    "radio_1": {
+      "enable": true,
+      "type": "SX1250",
+      "freq": 903900000,
+      "rssi_offset": -215.4,
+      "rssi_tcomp": {
+        "coeff_a": 0,
+        "coeff_b": 0,
+        "coeff_c": 20.41,
+        "coeff_d": 2162.56,
+        "coeff_e": 0
+      },
+      "tx_enable": false
+    },
+
+    "chan_multiSF_All": {
+      "spreading_factor_enable": [5, 6, 7, 8, 9, 10, 11, 12]
+    },
+
+    "chan_multiSF_0": { "enable": true, "radio": 0, "if": -400000 },
+    "chan_multiSF_1": { "enable": true, "radio": 0, "if": -200000 },
+    "chan_multiSF_2": { "enable": true, "radio": 0, "if": 0 },
+    "chan_multiSF_3": { "enable": true, "radio": 0, "if": 200000 },
+    "chan_multiSF_4": { "enable": true, "radio": 1, "if": -400000 },
+    "chan_multiSF_5": { "enable": true, "radio": 1, "if": -200000 },
+    "chan_multiSF_6": { "enable": true, "radio": 1, "if": 0 },
+    "chan_multiSF_7": { "enable": true, "radio": 1, "if": 200000 },
+
+    "chan_Lora_std": {
+      "enable": true,
+      "radio": 0,
+      "if": 300000,
+      "bandwidth": 500000,
+      "spread_factor": 8
+    },
+
+    "chan_FSK": {
+      "enable": false,
+      "radio": 0,
+      "if": 400000
+    }
+  },
+
+  "gateway_conf": {
+    "gateway_ID": "2CCF67FFFE0D5FC0",
+    "server_address": "10.1.5.18",
+    "serv_port_up": 1700,
+    "serv_port_down": 1700,
+    "keepalive_interval": 10,
+    "stat_interval": 30,
+    "push_timeout_ms": 100,
+
+    "forward_crc_valid": true,
+    "forward_crc_error": false,
+    "forward_crc_disabled": false,
+
+    "gps": false,
+    "gps_tty_path": "/dev/ttyS0",
+    "pps": false,
+    "gps_sync": false,
+
+    "ref_latitude": 0.0,
+    "ref_longitude": 0.0,
+    "ref_altitude": 0,
+
+    "beacon_period": 0,
+    "beacon_freq_hz": 923300000,
+    "beacon_freq_nb": 1,
+    "beacon_freq_step": 0,
+    "beacon_datarate": 10,
+    "beacon_bw_hz": 500000,
+    "beacon_power": 27
+  },
+
+  "debug_conf": {
+    "log_file": "/opt/ttn-gateway/packet_forwarder/lora_pkt_fwd/loragw_hal.log",
+    "verbose": true
+  }
+}

@@ -2,6 +2,8 @@
 initial_at_setup.py
 --------------------
 
+See EP/setup/guides/RUI3_AT_Command_Manual.pdf for the full list of AT commands
+
 This script performs a one-time setup of the RAK3272 LoRa node using AT commands over UART.
 It resets the device to factory defaults, then applies all necessary LoRaWAN ABP configuration
 parameters including device address, keys, and channel settings.
