@@ -92,8 +92,8 @@ def main_loop():
     observer = start_db_watch(on_db_modified)
 
     try:
-        weather_interval = 1 * 60
-        telemetry_interval = 1.2 * 60
+        weather_interval = 5 * 60
+        telemetry_interval = 5 * 60
 
         next_weather = time.time()
         next_telemetry = time.time()
