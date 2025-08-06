@@ -5,12 +5,12 @@ After=initial_at_setup.service
 
 [Service]
 Type=simple
-ExecStart=/home/FLC/EP/scripts/node/dispatcher.py
+ExecStart=/home/node1/EP/scripts/node/dispatcher.py
 Restart=always
 RestartSec=3
-User=FLC
-WorkingDirectory=/home/FLC/EP/scripts/node/
-Environment="PATH=/home/FLC/EP/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+User=node1
+WorkingDirectory=/home/node1/EP/scripts/node/
+Environment="PATH=/home/node1/EP/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 [Install]
 WantedBy=multi-user.target

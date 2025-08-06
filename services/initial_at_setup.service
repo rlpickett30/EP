@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/home/FLC/EP/scripts/node/initial_at_setup.py
+ExecStart=/home/node1/EP/scripts/node/initial_at_setup.py
 RemainAfterExit=true
 
 [Install]
