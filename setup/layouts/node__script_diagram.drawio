@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.6 Chrome/138.0.7204.100 Electron/37.2.3 Safari/537.36" version="28.0.6">
   <diagram name="Page-1" id="bEDtBJjbRW64ONqI4fNz">
-    <mxGraphModel dx="1808" dy="2023" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="3529" dy="3029" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1686,7 +1686,7 @@
           <mxGeometry x="6360" y="-40" width="120" height="120" as="geometry" />
         </mxCell>
         <mxCell id="LPKB3k54g_Fxfj-QyEzr-96" value="&lt;font style=&quot;font-size: 100px;&quot;&gt;V 1.1.F&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=13;" parent="1" vertex="1">
-          <mxGeometry x="6420" y="-560" width="410" height="300" as="geometry" />
+          <mxGeometry x="6220" y="-780" width="410" height="300" as="geometry" />
         </mxCell>
         <mxCell id="LPKB3k54g_Fxfj-QyEzr-138" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="LPKB3k54g_Fxfj-QyEzr-98" target="LPKB3k54g_Fxfj-QyEzr-105" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -1733,7 +1733,7 @@
         <mxCell id="LPKB3k54g_Fxfj-QyEzr-143" value="&lt;div&gt;initial_at_setup.py&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
           <mxGeometry x="6520" y="520" width="120" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="07B5mJDu1v8yvoa3SqAz-1" value="&lt;div&gt;setup_services.py&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+        <mxCell id="07B5mJDu1v8yvoa3SqAz-1" value="&lt;div&gt;setup_services.py&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
           <mxGeometry x="6360" y="520" width="120" height="120" as="geometry" />
         </mxCell>
       </root>

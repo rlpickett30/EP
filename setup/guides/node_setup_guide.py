@@ -19,7 +19,7 @@ sudo apt install minicom -y
 sudo raspi-config  
 
 
-sudo apt update && sudo apt full-upgrade -y && sudo apt install python3-pip -Y && sudo apt install minicom -y && sudo raspi-config
+sudo apt update && sudo apt full-upgrade -y && sudo apt install python3-pip -y && sudo apt install minicom -y && sudo raspi-config
 
 
     --Choose option 3 Interface Options:
