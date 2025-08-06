@@ -35,7 +35,7 @@ from pathlib import Path
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-DB_PATH = Path('/home/node1/BirdNET-Pi/scripts/birds.db')
+DB_PATH = Path.home() / "BirdNET-Pi" / "scripts" / "birds.db"
 
 class DBChangeHandler(FileSystemEventHandler):
     def __init__(self, callback):

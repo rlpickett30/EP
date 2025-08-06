@@ -26,7 +26,7 @@ import time
 import os
 from pathlib import Path
 
-DB_PATH = Path("/home/node1/BirdNET-Pi/scripts/birds.db")
+DB_PATH = Path.home() / "BirdNET-Pi" / "scripts" / "birds.db"
 
 def get_latest_detection():
     time.sleep(0.5)  # Give SQLite time to flush after fs event
