@@ -36,7 +36,7 @@ def run_initial_setup():
 
         # 2. Reapply all required LoRaWAN config
         cmds = [
-            "AT+MODE=0",                 # LoRaWAN mode
+            "AT+NWM=0",                 # LoRaWAN mode
             "AT+NJM=0",                  # ABP mode
             "AT+CLASS=A",                # Class A
             "AT+ADR=0",
