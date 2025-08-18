@@ -1,6 +1,6 @@
 Adafruit-Blinka==8.62.0
-adafruit-circuitpython-bmp3xx==2.1.19
-adafruit-circuitpython-dps310==3.3.9
+adafruit-circuitpython-bmp3xx==1.3.24
+adafruit-circuitpython-dps310==2.1.19
 adafruit-circuitpython-busdevice==5.2.13
 adafruit-circuitpython-connectionmanager==3.1.5
 adafruit-circuitpython-gps==3.11.3
