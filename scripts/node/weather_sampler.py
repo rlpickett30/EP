@@ -18,8 +18,8 @@ Usage:
 """
 
 import time
-from sht31_driver import read_sht31  # returns (temp: float, humidity: float)
-from bmp390_driver import read_bmp390  # returns pressure: float
+from sht45_driver import read_sht45  # returns (temp: float, humidity: float)
+from dps310_driver import read_dps310  # returns pressure: float
 
 class WeatherEvent:
     def __init__(self, temperature: int, humidity: int, pressure: int, timestamp: int, target: str = "send_over_lora"):
@@ -34,8 +34,8 @@ class WeatherEvent:
     def from_sensors(cls):
         """Attempts to read all sensors and return a structured event."""
         try:
-            temp, humidity = read_sht31()
-            pressure = read_bmp390()
+            temp, humidity = read_sht45()
+            pressure = read_dps310()
             timestamp = int(time.time())
 
             return cls(
